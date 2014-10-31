@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: lesson2.PrimeNumber
+-------------------------------------------------------------------------------
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.367 sec - in lesson2.PrimeNumber
