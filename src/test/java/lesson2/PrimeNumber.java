@@ -19,9 +19,19 @@ public class PrimeNumber {
         Assert.assertEquals(primeNumber(3), true);
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void methodToTestTest(){
-        //Assert.assertEquals();
+        Assert.assertEquals(methodToTest(2), 4);
+    }
+
+    @Test(enabled = true)
+    public void methodToTestTesToFail(){
+        Assert.assertEquals(methodToTest(2), 5);
+    }
+
+    public int methodToTest(int a){
+        int bPLusTwo = a + 2;
+        return bPLusTwo;
     }
 
     public static boolean primeNumber(int numb){
