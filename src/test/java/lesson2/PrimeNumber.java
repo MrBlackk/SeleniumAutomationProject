@@ -26,7 +26,7 @@ public class PrimeNumber {
 
     @Test(enabled = true)
     public void methodToTestTesToFail(){
-        Assert.assertEquals(methodToTest(2), 5);
+        Assert.assertEquals(methodToTest(3), 5);
     }
 
     public int methodToTest(int a){
