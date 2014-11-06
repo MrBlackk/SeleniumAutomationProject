@@ -28,6 +28,10 @@ public class PrimeNumber {
     public void methodToTestTesToFail(){
         Assert.assertEquals(methodToTest(3), 5);
     }
+    @Test(enabled = true)
+    public void methodToTestTesToFailAdd(){
+        Assert.assertEquals(methodToTest(4), 6);
+    }
 
     public int methodToTest(int a){
         int bPLusTwo = a + 2;
