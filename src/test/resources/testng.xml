@@ -4,6 +4,7 @@
     <test name="Nopackage" >
         <classes>
             <class name="lesson2.PrimeNumber"/>
+            <class name="ui.GoogleSearchTest"/>
         </classes>
     </test>
 </suite>
