@@ -1,0 +1,52 @@
+package ui;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class StylusSearchTest {
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp(){
+        driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("http://stylus.com.ua/");
+    }
+
+    @Test
+    public void searchSonyTest(){
+        WebElement searchField = driver.findElement(By.id("search_text"));
+        searchField.sendKeys("Sony Z2");
+        searchField.sendKeys(Keys.ENTER);
+        WebElement firstElement = driver.findElement(By.xpath(".//*[@id='col1_content']/table[2]/tbody/tr[1]/td[1]/table/tbody/tr/td[2]/h4/a"));
+        Assert.assertEquals(firstElement.getText().toString().contains("Sony Xperia Z2"), true);
+
+        firstElement.click();
+        //WebElement pageHeading = driver.findElement(By.xpath(".//*[@id='col1_content']/div[4]/h3/a/span"));
+        WebElement pageHeading = driver.findElement(By.xpath(".//*[@itemprop='name']"));
+        Assert.assertEquals(pageHeading.getText().contains("Sony Xperia Z2"), true);
+
+        WebElement specificationTab = driver.findElement(By.xpath(".//*[@id='menulink']/ul/li[1]/a/span"));
+        specificationTab.click();
+
+        String tr29Xpath = ".//*[@id='col1_content']/div[4]/div[1]/div[5]/table/tbody/tr[29]/";
+        WebElement internetAccessPropertyName = driver.findElement(By.xpath(tr29Xpath + "td[1]"));
+        Assert.assertEquals(internetAccessPropertyName.getText().toString().contains("Интернет-доступ"), true);
+        WebElement internetAccessPropertyValue = driver.findElement(By.xpath(tr29Xpath + "td[2]/div"));
+        Assert.assertEquals(internetAccessPropertyValue.getText().toString().contains("HTML, HTML5, Adobe Flash, RSS"), true);
+    }
+
+    @AfterClass
+    public void tearDown(){
+        driver.quit();
+    }
+}
