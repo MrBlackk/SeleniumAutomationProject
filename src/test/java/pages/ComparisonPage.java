@@ -13,9 +13,7 @@ import java.util.List;
 public class ComparisonPage extends TestBase{
 
     private String URL = "http://rozetka.com.ua/computers-notebooks/notebooks/comparison/";
-
     private By comparisonTitle = By.className("comparison-title");
-
     private By comparisonList = By.xpath(".//*[@class='comparison-t']/thead/tr[2]/td/div[2]/a");
 
     public boolean isOpened(){
@@ -23,15 +21,16 @@ public class ComparisonPage extends TestBase{
     }
 
     public boolean isCompareGoodsTextPresent(){
+        Log4Test.info("Verify that the page contains Сравнение товаров");
         return webDriver.findElement(comparisonTitle).getText().equals("Сравнение товаров");
     }
 
     public boolean isMacBooksPresent(String notebookName){
+        Log4Test.info("Verify that the page \"Добавить модель should contain Apple MacBook Pro Retina 15\" (Z0PU002JE) Официальная гарантия! and \n" +
+                "Apple MacBook Air 11\" (MD712UA/A) Официальная гарантия!");
         List<WebElement> listOfCompared = webDriver.findElements(comparisonList);
         for (int i=0;i<listOfCompared.size();i++){
-            Log4Test.info(listOfCompared.get(i).getText());
             if (listOfCompared.get(i).getText().contains(notebookName)){
-                Log4Test.info("FIND!!!!!!!!!!! COMPARE PAGE");
                 return true;
             }
         }

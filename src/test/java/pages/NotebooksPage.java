@@ -3,6 +3,7 @@ package pages;
 import core.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ui_tests.TestData;
 import utilities.Log4Test;
 
 import java.util.ArrayList;
@@ -27,31 +28,24 @@ public class NotebooksPage extends TestBase{
     }
 
     public boolean verifyManufacturers(){
+        Log4Test.info("Verify that all 9 manufactures are present");
         List<WebElement> listOfManufacturers =  webDriver.findElements(By.xpath(manufacturer));
-        //ToDo: move to TestData
-        List<String> listString = Arrays.asList("Acer", "Apple", "Asus", "Dell", "Fujitsu", "HP (Hewlett Packard)", "Lenovo", "MSI", "Sony");
+        List<String> listString = TestData.MANUFACTURERS_LIST;
 
         for (int i=0;i<listOfManufacturers.size();i++){
-            Log4Test.info(listOfManufacturers.get(i).getText());
-            Log4Test.info(listString.get(i));
             if (!listOfManufacturers.get(i).getText().equals(listString.get(i))){
-                Log4Test.info("false");
                 return false;
             }
         }
-        Log4Test.info("true");
         return true;
     }
 
     public void findAppleManufacturerAndClick(){
+        Log4Test.info("Find and click Apple manufacturer");
         List<WebElement> listOfManufacturers =  webDriver.findElements(By.xpath(manufacturer));
-        String apple = "Apple";
 
         for (int i=0;i<listOfManufacturers.size();i++){
-            Log4Test.info(listOfManufacturers.get(i).getText());
-            Log4Test.info(apple);
-            if (listOfManufacturers.get(i).getText().equals(apple)){
-                Log4Test.info("FIND!!!!!!!!!!!");
+            if (listOfManufacturers.get(i).getText().equals("Apple")){
                 listOfManufacturers.get(i).click();
                 break;
             }

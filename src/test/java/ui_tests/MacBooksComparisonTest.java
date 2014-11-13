@@ -34,12 +34,7 @@ public class MacBooksComparisonTest extends TestBase {
         assertTrue(notebooksPage.isTabActive());
 
         assertTrue(notebooksPage.verifyManufacturers());
-
-
-
     }
-    private String macBookProRetina = "Z0PU002JE";
-    private String macBookAir = "MD712UA/A";
 
     @Test(dependsOnMethods = {"openNotebooksPageAndVerifyNotebooksTab"})
     public void openAppleNotebooksPageAndChangeSorting(){
@@ -47,25 +42,22 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(appleNotebooksPage.isOpened());
 
-        appleNotebooksPage.selectSortExpensive();
+        //appleNotebooksPage.selectSortExpensive();
 
     }
 
     @Test(dependsOnMethods = {"openAppleNotebooksPageAndChangeSorting"})
     public void selectCompareCheckboxAndCheckList() throws InterruptedException {
-        appleNotebooksPage.isMacBookPresentAndSelectChecbox(macBookProRetina);
+        appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_PRO_RETINA_15_CODE);
 
         assertTrue(appleNotebooksPage.isComparisonListShown());
+        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
 
-        //appleNotebooksPage.isMacBooksInComparisonList(macBookProRetina);
+        appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_AIR_11_CODE);
 
-        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(macBookProRetina));
-
-        appleNotebooksPage.isMacBookPresentAndSelectChecbox(macBookAir);
-        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(macBookAir));
-
-
-
+        assertTrue(appleNotebooksPage.isComparisonListShown());
+        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
+        //assertFalse(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
     @Test(dependsOnMethods = {"selectCompareCheckboxAndCheckList"})
@@ -76,8 +68,8 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(comparisonPage.isCompareGoodsTextPresent());
 
-        assertTrue(comparisonPage.isMacBooksPresent(macBookProRetina));
-        assertTrue(comparisonPage.isMacBooksPresent(macBookAir));
+        assertTrue(comparisonPage.isMacBooksPresent(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
+        assertTrue(comparisonPage.isMacBooksPresent(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
 
