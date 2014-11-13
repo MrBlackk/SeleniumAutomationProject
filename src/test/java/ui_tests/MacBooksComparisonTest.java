@@ -1,7 +1,6 @@
 package ui_tests;
 
 import core.TestBase;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AppleNotebooksPage;
 import pages.ComparisonPage;
@@ -34,8 +33,19 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(notebooksPage.isTabActive());
 
-        notebooksPage.verifyManufacturers();
+        assertTrue(notebooksPage.verifyManufacturers());
 
+
+
+    }
+
+    @Test(dependsOnMethods = {"openNotebooksPageAndVerifyNotebooksTab"})
+    public void openAppleNotebooksPageAndChangeSorting(){
+        notebooksPage.findAppleManufacturerAndClick();
+
+        assertTrue(appleNotebooksPage.isOpened());
+
+        appleNotebooksPage.selectSortExpensive();
     }
 
 }
