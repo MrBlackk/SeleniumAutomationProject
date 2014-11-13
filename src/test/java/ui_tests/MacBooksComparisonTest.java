@@ -38,6 +38,8 @@ public class MacBooksComparisonTest extends TestBase {
 
 
     }
+    private String macBookProRetina = "Z0PU002JE";
+    private String macBookAir = "MD712UA/A";
 
     @Test(dependsOnMethods = {"openNotebooksPageAndVerifyNotebooksTab"})
     public void openAppleNotebooksPageAndChangeSorting(){
@@ -46,6 +48,37 @@ public class MacBooksComparisonTest extends TestBase {
         assertTrue(appleNotebooksPage.isOpened());
 
         appleNotebooksPage.selectSortExpensive();
+
     }
+
+    @Test(dependsOnMethods = {"openAppleNotebooksPageAndChangeSorting"})
+    public void selectCompareCheckboxAndCheckList() throws InterruptedException {
+        appleNotebooksPage.isMacBookPresentAndSelectChecbox(macBookProRetina);
+
+        assertTrue(appleNotebooksPage.isComparisonListShown());
+
+        //appleNotebooksPage.isMacBooksInComparisonList(macBookProRetina);
+
+        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(macBookProRetina));
+
+        appleNotebooksPage.isMacBookPresentAndSelectChecbox(macBookAir);
+        assertTrue(appleNotebooksPage.isMacBooksInComparisonList(macBookAir));
+
+
+
+    }
+
+    @Test(dependsOnMethods = {"selectCompareCheckboxAndCheckList"})
+    public void openComparisonPageAndVerify(){
+        appleNotebooksPage.clickCompare();
+
+        assertTrue(comparisonPage.isOpened());
+
+        assertTrue(comparisonPage.isCompareGoodsTextPresent());
+
+        assertTrue(comparisonPage.isMacBooksPresent(macBookProRetina));
+        assertTrue(comparisonPage.isMacBooksPresent(macBookAir));
+    }
+
 
 }
