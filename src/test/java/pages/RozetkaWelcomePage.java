@@ -18,6 +18,7 @@ public class RozetkaWelcomePage extends TestBase {
 
         webDriver.get(URL);
         Log4Test.info("Open URL " + URL);
+        //System.out.println("OPEN URL");
     }
 
     public boolean isOpened(){
