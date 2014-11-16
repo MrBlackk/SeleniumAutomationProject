@@ -14,6 +14,7 @@ import static org.testng.AssertJUnit.assertFalse;
 
 /**
  * Created by chv on 16.11.2014.
+ * test
  */
 public class GeneralPage extends TestBase {
 
