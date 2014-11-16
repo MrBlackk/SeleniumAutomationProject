@@ -18,5 +18,6 @@ public class TestData {
 
     public static final List<String> MANUFACTURERS_LIST = Arrays.asList("Acer", "Apple", "Asus", "Dell", "Fujitsu", "HP (Hewlett Packard)", "Lenovo", "MSI", "Sony");
 
-
+    public static final String ROZETKA_URL = "http://rozetka.com.ua/";
+    public static final String NOTEBOOKS_PAGE_URL = "http://rozetka.com.ua/notebooks/c80004/";
 }

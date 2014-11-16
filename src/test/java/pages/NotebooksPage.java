@@ -13,15 +13,15 @@ import java.util.List;
 /**
  * Created by chv on 12.11.2014.
  */
-public class NotebooksPage extends TestBase{
+public class NotebooksPage extends GeneralPage{
 
     private String URL = "http://rozetka.com.ua/notebooks/c80004/";
     private By notebooksTabActive = By.xpath(".//*[@id='computers-notebooks']/div[@class='m-main-i active']");
     private String manufacturer = ".//*[@name='menu_categories_left']/li[2]/ul/li/a";
 
-    public boolean isOpened(){
+    /*public boolean isOpened(){
         return webDriver.getCurrentUrl().equals(URL);
-    }
+    }*/
 
     public boolean isTabActive(){
         return webDriver.findElement(notebooksTabActive).isDisplayed();

@@ -4,6 +4,7 @@ import core.TestBase;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import utilities.Log4Test;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -21,6 +22,11 @@ public class GeneralPage extends TestBase {
     public void open(String URL){
 
         webDriver.get(URL);
+        Log4Test.info("Open URL " + URL);
+    }
+
+    public boolean isOpened(String URL){
+        return webDriver.getCurrentUrl().equals(URL);
     }
 
     protected WebElement elementIsLocated(By element){
