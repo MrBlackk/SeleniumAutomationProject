@@ -13,6 +13,50 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>CHROME_local</id>
+            <properties>
+                <browser.name>CHROME</browser.name>
+            </properties>
+        </profile>
+        <profile>
+            <id>FIRE_FOX_local</id>
+            <properties>
+                <browser.name>FIRE_FOX</browser.name>
+            </properties>
+        </profile>
+        <profile>
+            <id>IE_local</id>
+            <properties>
+                <browser.name>IE</browser.name>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src\test\resources\testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -40,46 +84,6 @@
             <version>1.2.14</version>
         </dependency>
 
-
     </dependencies>
-
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>chrome_local</id>
-            <properties>
-                <browser.name>chrome</browser.name>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>firefox_local</id>
-            <properties>
-                <browser.name>firefox</browser.name>
-            </properties>
-        </profile>
-    </profiles>
-
 
 </project>

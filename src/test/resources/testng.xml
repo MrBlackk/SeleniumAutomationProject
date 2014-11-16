@@ -6,6 +6,7 @@
             <!--<class name="lesson2.PrimeNumber"/>
             <class name="ui.GoogleSearchTest"/>-->
             <class name="ui_tests.MacBooksComparisonTest"/>
+            <!--<class name="selenium_cookbook.data_driven_testing.TestNGDDT"/>-->
         </classes>
     </test>
 </suite>

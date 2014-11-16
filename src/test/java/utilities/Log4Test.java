@@ -7,13 +7,12 @@ import org.testng.Reporter;
  * Created by chv on 12.11.2014.
  */
 public class Log4Test {
-    private Log4Test(){}
-
     private static final Logger LOGGER = Logger.getLogger(Log4Test.class);
 
-    //Default message content:
+    // ****************** Default message content ********************
     private static final String INFO_LOG = "INFO: \"%s\"";
     private static final String ERROR_LOG = "ERROR: \"%s\" !";
+    private Log4Test(){}
 
     public static String error(String message){
 

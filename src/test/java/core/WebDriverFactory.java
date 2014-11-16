@@ -3,8 +3,13 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import java.util.Arrays;
 
 /**
  * Created by chv on 12.11.2014.
@@ -25,8 +30,14 @@ public class WebDriverFactory {
 
         switch (browserType){
             case FIRE_FOX:
+                ProfilesIni profile = new ProfilesIni();
+                FirefoxProfile ffprofile = profile.getProfile("SELENIUM");
+
                 return new FirefoxDriver();
             case CHROME:
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("ignore-certificate-errors"));
+
                 return new ChromeDriver();
             case IE:
                 return new InternetExplorerDriver();
