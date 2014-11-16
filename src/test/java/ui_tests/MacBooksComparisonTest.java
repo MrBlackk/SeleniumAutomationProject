@@ -31,16 +31,16 @@ public class MacBooksComparisonTest extends TestBase {
         page.openNotebooksPage();
         assertTrue(notebooksPage.isOpened(TestData.NOTEBOOKS_PAGE_URL));
 
-        //assertTrue(notebooksPage.isTabActive());
+        assertTrue(notebooksPage.isTabActive());
 
-        //assertTrue(notebooksPage.verifyManufacturers());
+        assertTrue(notebooksPage.verifyManufacturers());
     }
 
-    //@Test(dependsOnMethods = {"openNotebooksPageAndVerifyNotebooksTab"})
+    @Test(dependsOnMethods = {"openNotebooksPageAndVerifyNotebooksTab"})
     public void openAppleNotebooksPageAndChangeSorting(){
         notebooksPage.findAppleManufacturerAndClick();
 
-        assertTrue(appleNotebooksPage.isOpened());
+        assertTrue(appleNotebooksPage.isOpened(TestData.APPLE_NOTEBOOKS_PAGE_URL));
 
         appleNotebooksPage.selectSortExpensive();
 

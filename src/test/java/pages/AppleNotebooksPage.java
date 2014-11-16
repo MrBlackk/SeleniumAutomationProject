@@ -16,11 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by chv on 12.11.2014.
  */
-public class AppleNotebooksPage extends TestBase{
-
-    private String URL = "http://rozetka.com.ua/notebooks/apple/c80004/v069/";
-    private By dropLink = By.name("drop_link");
-    private By expensiveDropDown = By.xpath(".//*[@id='sort_view']/div/div/ul/li[2]");
+public class AppleNotebooksPage extends GeneralPage{
 
     private By allTitles = By.xpath(".//*[@id='block_with_goods']//*[@class='gtile-i-title']/a");
     private By allCheckboxes = By.xpath(".//*[@id='block_with_goods']//*[@class='g-tools-to-compare-check']");
@@ -29,14 +25,12 @@ public class AppleNotebooksPage extends TestBase{
     private By inComparisonText = By.xpath(".//*[@class='incomparison']");
 
 
-    public boolean isOpened(){
-        return webDriver.getCurrentUrl().equals(URL);
-    }
 
     public void selectSortExpensive(){
+        Log4Test.test("selectSortExpensive");
         Log4Test.info("Click Выводить: от дорогих к дешевым");
-        webDriver.findElement(dropLink).click();
-        webDriver.findElement(expensiveDropDown).click();
+        elementIsLocated(getLocator("sortDropDown")).click();
+        elementIsLocated(getLocator("sortDropDownExpensive")).click();
     }
 
     public void isMacBookPresentAndSelectChecbox(String notebookName) throws InterruptedException {

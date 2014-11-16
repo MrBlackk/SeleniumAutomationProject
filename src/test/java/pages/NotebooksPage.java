@@ -1,13 +1,11 @@
 package pages;
 
-import core.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui_tests.TestData;
 import utilities.Log4Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,25 +13,20 @@ import java.util.List;
  */
 public class NotebooksPage extends GeneralPage{
 
-    private String URL = "http://rozetka.com.ua/notebooks/c80004/";
-    private By notebooksTabActive = By.xpath(".//*[@id='computers-notebooks']/div[@class='m-main-i active']");
-    private String manufacturer = ".//*[@name='menu_categories_left']/li[2]/ul/li/a";
-
-    /*public boolean isOpened(){
-        return webDriver.getCurrentUrl().equals(URL);
-    }*/
+    private By allManufacturers = By.xpath(".//*[@name='menu_categories_left']/li[2]/ul/li/a");
 
     public boolean isTabActive(){
-        return webDriver.findElement(notebooksTabActive).isDisplayed();
+        return elementIsLocated(getLocator("notebooksTabActive")).isDisplayed();
     }
 
     public boolean verifyManufacturers(){
         Log4Test.info("Verify that all 9 manufactures are present");
-        List<WebElement> listOfManufacturers =  webDriver.findElements(By.xpath(manufacturer));
-        List<String> listString = TestData.MANUFACTURERS_LIST;
+        List<WebElement> listOfManufacturers =  elementsAreLocated(getLocator("allManufacturers"));
+        List<String> listOfManufacturersVerify = TestData.MANUFACTURERS_LIST;
 
         for (int i=0;i<listOfManufacturers.size();i++){
-            if (!listOfManufacturers.get(i).getText().equals(listString.get(i))){
+            Log4Test.test(listOfManufacturers.get(i).getText());
+            if (!listOfManufacturers.get(i).getText().equals(listOfManufacturersVerify.get(i))){
                 return false;
             }
         }
@@ -42,7 +35,7 @@ public class NotebooksPage extends GeneralPage{
 
     public void findAppleManufacturerAndClick(){
         Log4Test.info("Find and click Apple manufacturer");
-        List<WebElement> listOfManufacturers =  webDriver.findElements(By.xpath(manufacturer));
+        List<WebElement> listOfManufacturers =  elementsAreLocated(getLocator("allManufacturers"));
 
         for (int i=0;i<listOfManufacturers.size();i++){
             if (listOfManufacturers.get(i).getText().equals("Apple")){

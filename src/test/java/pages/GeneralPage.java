@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.Log4Test;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
@@ -26,6 +27,7 @@ public class GeneralPage extends TestBase {
     }
 
     public boolean isOpened(String URL){
+        Log4Test.test("isOpened " + URL + " ?");
         return webDriver.getCurrentUrl().equals(URL);
     }
 
@@ -37,8 +39,21 @@ public class GeneralPage extends TestBase {
         catch (StaleElementReferenceException se){
             return wait.until(ExpectedConditions.presenceOfElementLocated(element));
         }
-        catch (NoSuchElementException ne){
+        catch (NoSuchElementException nse){
             return wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        }
+    }
+
+    protected List<WebElement> elementsAreLocated(By elements){
+
+        try {
+            return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(elements));
+        }
+        catch (StaleElementReferenceException se){
+            return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(elements));
+        }
+        catch (NoSuchElementException nse){
+            return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(elements));
         }
     }
 
@@ -70,6 +85,9 @@ public class GeneralPage extends TestBase {
         }
         else if (locatorType.toLowerCase().equals("xpath")){
             return By.xpath(locatorValue);
+        }
+        else if (locatorType.toLowerCase().equals("name")){
+            return By.name(locatorValue);
         }
 
         else {

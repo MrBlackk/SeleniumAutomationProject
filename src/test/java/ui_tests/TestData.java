@@ -20,4 +20,5 @@ public class TestData {
 
     public static final String ROZETKA_URL = "http://rozetka.com.ua/";
     public static final String NOTEBOOKS_PAGE_URL = "http://rozetka.com.ua/notebooks/c80004/";
+    public static final String APPLE_NOTEBOOKS_PAGE_URL = "http://rozetka.com.ua/notebooks/apple/c80004/v069/";
 }
