@@ -28,7 +28,6 @@ public class AppleNotebooksPage extends TestBase{
     //private By comparisonElement = By.xpath(".//*[@class='list-compare']/div/div/ul/li/a[2]");
     private By inComparisonText = By.xpath(".//*[@class='incomparison']");
 
-    //private String macBookProRetina = "Z0PU002JE";
 
     public boolean isOpened(){
         return webDriver.getCurrentUrl().equals(URL);
@@ -46,30 +45,62 @@ public class AppleNotebooksPage extends TestBase{
         List<WebElement> listOfCheckboxes = webDriver.findElements(allCheckboxes);
 
         for (int i=0;i<listofTitles.size();i++){
-            //Log4Test.info(listofTitles.get(i).getText());
-            //Log4Test.info(listOfCheckboxes.get(i).toString());
             if (listofTitles.get(i).getText().contains(notebookName)){
-                Log4Test.info("FIND!!!!!!!!!!!!!!!!!!!!!!!!! " + notebookName);
-                listOfCheckboxes.get(i).click();
+                //listOfCheckboxes.get(i).click();
+
+                //--------StaleElementReferenceException workaround---------
+                try{
+                    listOfCheckboxes.get(i).click();
+                }
+                catch (org.openqa.selenium.StaleElementReferenceException ex){
+                    List<WebElement> listOfCheckboxes2 = webDriver.findElements(allCheckboxes);
+                    //webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                    listOfCheckboxes2.get(i).click();
+                }
+                break;
             }
         }
     }
 
     public boolean isComparisonListShown() throws InterruptedException {
         By comparisonList = By.xpath(".//*[@class='list-compare']");
-        return webDriver.findElement(comparisonList).isDisplayed();
+        //return webDriver.findElement(comparisonList).isDisplayed();
+
+        //--------StaleElementReferenceException workaround---------
+        try{
+            return webDriver.findElement(comparisonList).isDisplayed();
+        }
+        catch (org.openqa.selenium.StaleElementReferenceException ex){
+            By comparisonList2 = By.xpath(".//*[@class='list-compare']");
+            return webDriver.findElement(comparisonList2).isDisplayed();
+        }
+
+
+
+
     }
 
     public boolean isMacBooksInComparisonList(String notebookName){
+        By comparisonElement = By.xpath(".//*[@class='list-compare']/div/div/ul/li/a[2]"); //To fix re-creating elements issue
         Log4Test.info("Find Mac Book in list " + notebookName);
-        By comparisonElement = By.xpath(".//*[@class='list-compare']/div/div/ul/li/a[2]");
-        List<WebElement> listofElements = webDriver.findElements(comparisonElement);
-        for (int i=0;i<listofElements.size();i++){
-            Log4Test.info(listofElements.get(i).getText());
-            if (listofElements.get(i).getText().contains(notebookName)){
+        List<WebElement> listOfElements = webDriver.findElements(comparisonElement);
+        for (int i=0;i<listOfElements.size();i++){
+            if (listOfElements.get(i).getText().contains(notebookName)){
                 Log4Test.info("Find in list " + notebookName);
                 return true;
             }
+            // Workaround: sometimes test fails
+            else{
+                By comparisonElement2 = By.xpath(".//*[@class='list-compare']/div/div/ul/li/a[2]");
+                List<WebElement> listOfElements2 = webDriver.findElements(comparisonElement2);
+                for (int j=0;j<listOfElements2.size();j++) {
+                    if (listOfElements2.get(j).getText().contains(notebookName)) {
+                        Log4Test.info("Find in list#2 " + notebookName);
+                        return true;
+                    }
+                }
+            }
+
         }
         return false;
     }

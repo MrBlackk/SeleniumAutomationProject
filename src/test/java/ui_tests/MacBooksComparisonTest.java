@@ -42,7 +42,7 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(appleNotebooksPage.isOpened());
 
-        //appleNotebooksPage.selectSortExpensive();
+        appleNotebooksPage.selectSortExpensive();
 
     }
 
@@ -55,9 +55,8 @@ public class MacBooksComparisonTest extends TestBase {
 
         appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_AIR_11_CODE);
 
-        assertTrue(appleNotebooksPage.isComparisonListShown());
+        //assertTrue(appleNotebooksPage.isComparisonListShown());
         assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
-        //assertFalse(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
     @Test(dependsOnMethods = {"selectCompareCheckboxAndCheckList"})

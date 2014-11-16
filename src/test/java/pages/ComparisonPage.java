@@ -26,8 +26,7 @@ public class ComparisonPage extends TestBase{
     }
 
     public boolean isMacBooksPresent(String notebookName){
-        Log4Test.info("Verify that the page \"Добавить модель should contain Apple MacBook Pro Retina 15\" (Z0PU002JE) Официальная гарантия! and \n" +
-                "Apple MacBook Air 11\" (MD712UA/A) Официальная гарантия!");
+        Log4Test.info("Verify that the page \"Добавить модель should contain " + notebookName);
         List<WebElement> listOfCompared = webDriver.findElements(comparisonList);
         for (int i=0;i<listOfCompared.size();i++){
             if (listOfCompared.get(i).getText().contains(notebookName)){
