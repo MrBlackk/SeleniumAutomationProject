@@ -25,7 +25,7 @@ public class NotebooksPage extends GeneralPage{
         List<String> listOfManufacturersVerify = TestData.MANUFACTURERS_LIST;
 
         for (int i=0;i<listOfManufacturers.size();i++){
-            Log4Test.test(listOfManufacturers.get(i).getText());
+            //Log4Test.test(listOfManufacturers.get(i).getText());
             if (!listOfManufacturers.get(i).getText().equals(listOfManufacturersVerify.get(i))){
                 return false;
             }

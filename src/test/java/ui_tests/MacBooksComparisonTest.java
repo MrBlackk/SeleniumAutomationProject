@@ -46,7 +46,7 @@ public class MacBooksComparisonTest extends TestBase {
 
     }
 
-    //@Test(dependsOnMethods = {"openAppleNotebooksPageAndChangeSorting"})
+    @Test(dependsOnMethods = {"openAppleNotebooksPageAndChangeSorting"})
     public void selectCompareCheckboxAndCheckList() throws InterruptedException {
         appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_PRO_RETINA_15_CODE);
 
@@ -59,11 +59,11 @@ public class MacBooksComparisonTest extends TestBase {
         assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
-    //@Test(dependsOnMethods = {"selectCompareCheckboxAndCheckList"})
+    @Test(dependsOnMethods = {"selectCompareCheckboxAndCheckList"})
     public void openComparisonPageAndVerify(){
         appleNotebooksPage.clickCompare();
 
-        assertTrue(comparisonPage.isOpened());
+        assertTrue(comparisonPage.isOpened(TestData.COMPARISON_PAGE_URL));
 
         assertTrue(comparisonPage.isCompareGoodsTextPresent());
 

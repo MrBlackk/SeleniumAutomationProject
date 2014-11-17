@@ -18,7 +18,11 @@ public class TestData {
 
     public static final List<String> MANUFACTURERS_LIST = Arrays.asList("Acer", "Apple", "Asus", "Dell", "Fujitsu", "HP (Hewlett Packard)", "Lenovo", "MSI", "Sony");
 
+
+    //URLs
     public static final String ROZETKA_URL = "http://rozetka.com.ua/";
     public static final String NOTEBOOKS_PAGE_URL = "http://rozetka.com.ua/notebooks/c80004/";
     public static final String APPLE_NOTEBOOKS_PAGE_URL = "http://rozetka.com.ua/notebooks/apple/c80004/v069/";
+    public static final String COMPARISON_PAGE_URL = "http://rozetka.com.ua/computers-notebooks/notebooks/comparison/";
+
 }
