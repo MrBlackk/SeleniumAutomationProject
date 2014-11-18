@@ -1,8 +1,10 @@
 package selenium_cookbook.api.dropdowns_and_lists;
 
+import core.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -15,7 +17,17 @@ import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertFalse;
 
 public class DropDownsAndLists {
-    WebDriver driver = new FirefoxDriver();
+    static {
+        try {
+            //System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("iedriver.exe").getPath());
+            System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
+        }
+        catch (Exception e){
+            System.out.println("Cannot launch Firefox or Chrome driver \n" + e.getMessage());
+        }
+    }
+    WebDriver driver = new ChromeDriver();
+
 
     @BeforeMethod
     public void setUp() {
@@ -41,29 +53,38 @@ public class DropDownsAndLists {
         driver.switchTo().frame(iFrame);
 
         //Get the Dropdown as a Select using its name attribute
-        Select make = new Select(driver.findElement(By.xpath("html/body/select")));
+        Select dropDown = new Select(driver.findElement(By.xpath("html/body/select")));
 
-        System.out.printf("%s ", make.getOptions().size());
+        System.out.printf("Drop down size: %s ", dropDown.getOptions().size());
 
-        for (WebElement m : make.getOptions()) {
-            System.out.print(m.getText());
+        System.out.println();
+        System.out.println("Elements: ");
+        for (WebElement m : dropDown.getOptions()) {
+            System.out.print(m.getText() + " ");
         }
 
         //Verify Dropdown does not support multiple selection
-        assertFalse(make.isMultiple());
+        assertFalse(dropDown.isMultiple());
 
-        Assert.assertEquals(4, make.getOptions().size());
+        Assert.assertEquals(4, dropDown.getOptions().size());
 
-        make.selectByVisibleText("Volvo");
+        dropDown.selectByVisibleText("Saab");
 
-        Assert.assertEquals("Volvo", make.getFirstSelectedOption().getText());
+        Assert.assertEquals("Saab", dropDown.getFirstSelectedOption().getText());
+
+        /*//test
+        dropDown.selectByValue("opel");
+        Assert.assertEquals("Opel", dropDown.getFirstSelectedOption().getText());
+
+        dropDown.selectByIndex(3);
+        //test*/
 //
-        make.selectByValue("opel");
+        dropDown.selectByValue("opel");
 
-        Assert.assertEquals("Opel", make.getFirstSelectedOption().getText());
+        Assert.assertEquals("Opel", dropDown.getFirstSelectedOption().getText());
 //
-        make.selectByIndex(2);
-        Assert.assertEquals("Opel", make.getFirstSelectedOption().getText());
+        dropDown.selectByIndex(2);
+        Assert.assertEquals("Opel", dropDown.getFirstSelectedOption().getText());
 
     }
 }

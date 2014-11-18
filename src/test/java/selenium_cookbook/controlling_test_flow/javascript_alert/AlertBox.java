@@ -1,10 +1,12 @@
 package selenium_cookbook.controlling_test_flow.javascript_alert;
 
 
+import core.WebDriverFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,7 +23,11 @@ import static org.testng.Assert.assertTrue;
  * To change this template use File | Settings | File Templates.
  */
 public class AlertBox {
-    WebDriver driver = new FirefoxDriver();
+    static {
+        System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
+    }
+    WebDriver driver = new ChromeDriver();
+    //WebDriver driver = new FirefoxDriver();
 
     @BeforeMethod
     public void startUp() {
@@ -44,11 +50,15 @@ public class AlertBox {
 
         alertBoxButton.click();
 
-        Alert alert = driver.switchTo().alert();
+//        Alert alert = driver.switchTo().alert();
+//
+//        String alertText = alert.getText();
+//
+//        alert.accept();
+        Alert alert1 = driver.switchTo().alert();
+        String alertText = alert1.getText();
+        //alert1.dismiss();
 
-        String alertText = alert.getText();
-
-        alert.accept();
 
         assertTrue(alertText.equals("Thanks... I feel much better now!"));
     }

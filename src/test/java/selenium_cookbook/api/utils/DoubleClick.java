@@ -1,7 +1,9 @@
 package selenium_cookbook.api.utils;
 
+import core.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
@@ -15,7 +17,17 @@ import static org.testng.Assert.assertEquals;
 
 public class DoubleClick {
 
-    WebDriver driver = new FirefoxDriver();
+    static {
+        try {
+            //System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("iedriver.exe").getPath());
+            System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
+        }
+        catch (Exception e){
+            System.out.println("Cannot launch Firefox or Chrome driver \n" + e.getMessage());
+        }
+    }
+    WebDriver driver = new ChromeDriver();
+    // WebDriver driver = new FirefoxDriver();
 
     @BeforeMethod
     public void setUp() {
@@ -27,7 +39,7 @@ public class DoubleClick {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
@@ -40,9 +52,11 @@ public class DoubleClick {
 
         System.out.print(message.getAttribute("align"));
 
-        Actions builder = new Actions(driver);
+        //Actions builder = new Actions(driver);
 
-        builder.doubleClick(message).build().perform();
+        //builder.doubleClick(message).build().perform();
+        Actions actions = new Actions(driver);
+        actions.doubleClick(message).build().perform();
 
 
         try {
@@ -51,7 +65,7 @@ public class DoubleClick {
 
             File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-            FileUtils.copyFile(srcFile, new File("c:\\tmp\\practice2.png"));
+            FileUtils.copyFile(srcFile, new File("c:\\tmp\\practice211.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,6 +73,7 @@ public class DoubleClick {
             System.out.print(message.getAttribute("namespaceURI"));
 
             //Verify Color is Yellow
+            //Verify Color is Blue
 
             assertEquals("rgba(255, 255, 0, 1)", message.getCssValue("background-color").toString());
 

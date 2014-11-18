@@ -1,8 +1,10 @@
 package selenium_cookbook.controlling_test_flow.popup_windows;
 
+import core.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,7 +23,11 @@ import static org.testng.Assert.assertTrue;
  */
 public class Popup {
 
-    WebDriver driver = new FirefoxDriver();
+    static {
+        System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
+    }
+    WebDriver driver = new ChromeDriver();
+    //WebDriver driver = new FirefoxDriver();
 
     @BeforeMethod
     public void startUp() {
@@ -41,11 +47,19 @@ public class Popup {
     }
 
     @Test
-    public void testWindowPopUp() {
+    public void testWindowPopUp() throws InterruptedException {
 
         String parentWindowId = driver.getWindowHandle();
 
         WebElement popUpWindow = driver.findElement(By.cssSelector(".result>input"));
+        WebElement advertisment = driver.findElement(By.xpath(".//*[@id='at4m-dock-toggle']"));
+
+        if (advertisment.isDisplayed()){
+            System.out.println("advertisment clicked");
+            advertisment.click();
+            Thread.sleep(3000);
+        }
+
 
         popUpWindow.click();
 

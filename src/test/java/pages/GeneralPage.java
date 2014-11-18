@@ -31,7 +31,7 @@ public class GeneralPage extends TestBase {
         return webDriver.getCurrentUrl().equals(URL);
     }
 
-    protected WebElement elementIsLocated(By element){
+    public WebElement elementIsLocated(By element){
 
         try {
             return wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -44,7 +44,7 @@ public class GeneralPage extends TestBase {
         }
     }
 
-    protected List<WebElement> elementsAreLocated(By elements){
+    public List<WebElement> elementsAreLocated(By elements){
 
         try {
             return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(elements));
