@@ -34,6 +34,7 @@ public class AppleNotebooksPage extends GeneralPage{
             if (listOfTitles.get(i).getText().contains(notebookName)){
                 List<WebElement> listOfCheckboxes = elementsAreLocated(getLocator("allAppleNotebooksCheckboxes"));
                 listOfCheckboxes.get(i).click();
+                break;
             }
         }
     }
@@ -43,10 +44,16 @@ public class AppleNotebooksPage extends GeneralPage{
         return elementIsLocated(getLocator("comparisonList")).isDisplayed();
     }
 
-    public boolean isMacBooksInComparisonList(String notebookName){
+    public boolean isMacBooksInComparisonList(String notebookName) throws InterruptedException {
         Log4Test.info("Find Mac Book in list " + notebookName);
+        waitForPageLoaded();
+        //ToDo: re-implement
+        Thread.sleep(1000);
         List<WebElement> listOfElements = elementsAreLocated(getLocator("comparisonListElements"));
+
         for (int i=0;i<listOfElements.size();i++){
+            Log4Test.test(listOfElements.get(i).getText());
+            Log4Test.test("Size:" + listOfElements.size() + " and i element: " + notebookName);
             if (listOfElements.get(i).getText().contains(notebookName)){
                 Log4Test.info("Find in list " + notebookName);
                 return true;

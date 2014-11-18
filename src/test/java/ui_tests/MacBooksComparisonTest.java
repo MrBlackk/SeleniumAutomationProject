@@ -13,6 +13,9 @@ import static org.testng.Assert.*;
  * Created by chv on 12.11.2014.
  */
 public class MacBooksComparisonTest extends TestBase {
+    //Todo: general refactoring(names etc.)
+    //Todo: selectors refactoring
+    //Todo: firefox/ie tests
 
     RozetkaWelcomePage page = new RozetkaWelcomePage();
     NotebooksPage notebooksPage = new NotebooksPage();
