@@ -14,7 +14,7 @@ public class ComparisonPage extends GeneralPage{
 
     @Override
     public boolean isOpened(String URL) {
-        return webDriver.getCurrentUrl().contains(URL);
+        return webDriver.getCurrentUrl().contains(URL); // chnaged equals to contains
     }
 
     public boolean isCompareGoodsTextPresent(){
@@ -22,7 +22,7 @@ public class ComparisonPage extends GeneralPage{
         return elementIsLocated(getLocator("comparisonPageTitle")).getText().equals("Сравнение товаров");
     }
 
-    public boolean isMacBooksPresent(String notebookName){
+    public boolean isMacBookPresent(String notebookName){
         Log4Test.info("Verify that the page \"Добавить модель should contain " + notebookName);
         List<WebElement> listOfCompared = elementsAreLocated(getLocator("elementsInComparison"));
         for (int i=0;i<listOfCompared.size();i++){

@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class NotebooksPage extends GeneralPage{
 
-    private By allManufacturers = By.xpath(".//*[@name='menu_categories_left']/li[2]/ul/li/a");
-
     public boolean isTabActive(){
         return elementIsLocated(getLocator("notebooksTabActive")).isDisplayed();
     }
@@ -34,7 +32,7 @@ public class NotebooksPage extends GeneralPage{
     }
 
     public void findAppleManufacturerAndClick(){
-        Log4Test.info("Find and click Apple manufacturer");
+        Log4Test.info("Find and click 'Apple' manufacturer");
         List<WebElement> listOfManufacturers =  elementsAreLocated(getLocator("allManufacturers"));
 
         for (int i=0;i<listOfManufacturers.size();i++){

@@ -45,7 +45,7 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(appleNotebooksPage.isOpened(TestData.APPLE_NOTEBOOKS_PAGE_URL));
 
-        appleNotebooksPage.selectSortExpensive();
+        appleNotebooksPage.selectSortExpensive(TestData.SORT_DROP_DOWN_ELEMENT);
 
     }
 
@@ -53,12 +53,12 @@ public class MacBooksComparisonTest extends TestBase {
     public void selectCompareCheckboxAndCheckList() throws InterruptedException {
         appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_PRO_RETINA_15_CODE);
 
-        assertTrue(appleNotebooksPage.isComparisonListShown());
+        assertTrue(appleNotebooksPage.isNumberOfElementsInComparisonListCorrect(1));
         assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
 
         appleNotebooksPage.isMacBookPresentAndSelectChecbox(TestData.MAC_BOOK_AIR_11_CODE);
 
-        //assertTrue(appleNotebooksPage.isComparisonListShown());
+        assertTrue(appleNotebooksPage.isNumberOfElementsInComparisonListCorrect(2));
         assertTrue(appleNotebooksPage.isMacBooksInComparisonList(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
@@ -70,8 +70,8 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(comparisonPage.isCompareGoodsTextPresent());
 
-        assertTrue(comparisonPage.isMacBooksPresent(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
-        assertTrue(comparisonPage.isMacBooksPresent(TestData.MAC_BOOK_AIR_11_CODE));
+        assertTrue(comparisonPage.isMacBookPresent(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
+        assertTrue(comparisonPage.isMacBookPresent(TestData.MAC_BOOK_AIR_11_CODE));
     }
 
 
