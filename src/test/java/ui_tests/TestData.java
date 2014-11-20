@@ -11,7 +11,7 @@ import java.util.List;
 public class TestData {
 
     //Browser Type
-    public static final BrowserTypes BROWSER_NAME = BrowserTypes.CHROME;
+    public static final BrowserTypes BROWSER_NAME = BrowserTypes.FIRE_FOX;
 
     //TestData
     public static final String MAC_BOOK_PRO_RETINA_15_CODE = "Z0PU002JE";//Apple MacBook Pro Retina 15 (Z0PU002JE)

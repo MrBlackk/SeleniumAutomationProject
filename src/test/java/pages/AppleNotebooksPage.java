@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import sun.rmi.runtime.Log;
 import utilities.Log4Test;
@@ -25,14 +26,14 @@ public class AppleNotebooksPage extends GeneralPage{
     }
 
     public void isMacBookPresentAndSelectChecbox(String notebookName) throws InterruptedException {
-        //Log4Test.test("isMacBookPresentAndSelectChecbox");
         Log4Test.info("Find Mac Book and click boolean check \"К сравнению\" " + notebookName);
         List<WebElement> listOfTitles = elementsAreLocated(getLocator("allAppleNotebooksTitles"));
 
         for (int i=0;i<listOfTitles.size();i++){
             if (listOfTitles.get(i).getText().contains(notebookName)){
                 List<WebElement> listOfCheckboxes = elementsAreLocated(getLocator("allAppleNotebooksCheckboxes"));
-                listOfCheckboxes.get(i).click();
+                ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", listOfCheckboxes.get(i));  //Firefox
+                //listOfCheckboxes.get(i).click();  //Chrome
                 break;
             }
         }

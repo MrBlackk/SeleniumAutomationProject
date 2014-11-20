@@ -18,7 +18,7 @@ public class WebDriverFactory {
 
     static {
         try {
-            //System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("iedriver.exe").getPath());
+            System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/iedriver.exe").getPath());
             System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
         }
         catch (Exception e){
