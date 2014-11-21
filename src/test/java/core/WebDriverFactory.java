@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Arrays;
 
@@ -18,11 +19,12 @@ public class WebDriverFactory {
 
     static {
         try {
+            //System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/IEDriverServer.exe").getPath());
             System.setProperty("webdriver.ie.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/iedriver.exe").getPath());
             System.setProperty("webdriver.chrome.driver", WebDriverFactory.class.getClassLoader().getResource("drivers/windows/chromedriver.exe").getPath());
         }
         catch (Exception e){
-            System.out.println("Cannot launch Firefox or Chrome driver \n" + e.getMessage());
+            System.out.println("Cannot launch InternetExplorer or Chrome driver \n" + e.getMessage());
         }
     }
 
@@ -40,6 +42,8 @@ public class WebDriverFactory {
 
                 return new ChromeDriver();
             case IE:
+                //DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+                //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
                 return new InternetExplorerDriver();
             default:
                 throw new IllegalArgumentException("Browser is not supported " + browserType);

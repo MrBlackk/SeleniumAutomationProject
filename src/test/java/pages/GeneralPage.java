@@ -27,7 +27,6 @@ public class GeneralPage extends TestBase {
     }
 
     public boolean isOpened(String URL){
-        //Log4Test.test("isOpened " + URL + " ?");
         return webDriver.getCurrentUrl().equals(URL);
     }
 

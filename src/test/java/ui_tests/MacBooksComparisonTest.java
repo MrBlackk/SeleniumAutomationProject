@@ -13,9 +13,6 @@ import static org.testng.Assert.*;
  * Created by chv on 12.11.2014.
  */
 public class MacBooksComparisonTest extends TestBase {
-    //Todo: general refactoring(names etc.)
-    //Todo: selectors refactoring
-    //Todo: firefox/ie tests
 
     RozetkaWelcomePage page = new RozetkaWelcomePage();
     NotebooksPage notebooksPage = new NotebooksPage();
@@ -45,7 +42,7 @@ public class MacBooksComparisonTest extends TestBase {
 
         assertTrue(appleNotebooksPage.isOpened(TestData.APPLE_NOTEBOOKS_PAGE_URL));
 
-        appleNotebooksPage.selectSortExpensive(TestData.SORT_DROP_DOWN_ELEMENT);
+        appleNotebooksPage.selectElementFromSortDropDown(TestData.SORT_DROP_DOWN_ELEMENT);
 
     }
 
@@ -73,6 +70,5 @@ public class MacBooksComparisonTest extends TestBase {
         assertTrue(comparisonPage.isMacBookPresent(TestData.MAC_BOOK_PRO_RETINA_15_CODE));
         assertTrue(comparisonPage.isMacBookPresent(TestData.MAC_BOOK_AIR_11_CODE));
     }
-
 
 }

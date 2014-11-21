@@ -13,17 +13,18 @@ import java.util.List;
  */
 public class NotebooksPage extends GeneralPage{
 
+    //Verify that tab "Ноутбуки, планшеты и компьютеры" is active
     public boolean isTabActive(){
         return elementIsLocated(getLocator("notebooksTabActive")).isDisplayed();
     }
 
+    //Verify that all 9 manufactures are present in correct order
     public boolean verifyManufacturers(){
         Log4Test.info("Verify that all 9 manufactures are present");
         List<WebElement> listOfManufacturers =  elementsAreLocated(getLocator("allManufacturers"));
         List<String> listOfManufacturersVerify = TestData.MANUFACTURERS_LIST;
 
         for (int i=0;i<listOfManufacturers.size();i++){
-            //Log4Test.test(listOfManufacturers.get(i).getText());
             if (!listOfManufacturers.get(i).getText().equals(listOfManufacturersVerify.get(i))){
                 return false;
             }

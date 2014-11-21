@@ -11,7 +11,6 @@ import utilities.Log4Test;
 public class RozetkaWelcomePage extends GeneralPage {
 
     public void openNotebooksPage(){
-        //Log4Test.test("openNotebooksPage");
         Log4Test.info("Click \"Ноутбуки\" under \"Ноутбуки, планшеты и компьютеры\"");
         waitForPageLoaded();
         elementIsLocated(getLocator("notebookPage")).click();
