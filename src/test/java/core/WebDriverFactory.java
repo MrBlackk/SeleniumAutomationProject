@@ -35,12 +35,12 @@ public class WebDriverFactory {
                 ProfilesIni profile = new ProfilesIni();
                 FirefoxProfile ffprofile = profile.getProfile("SELENIUM");
 
-                return new FirefoxDriver();
+                return new FirefoxDriver(ffprofile);
             case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("excludeSwitches", Arrays.asList("ignore-certificate-errors"));
 
-                return new ChromeDriver();
+                return new ChromeDriver(chromeOptions);
             case IE:
                 //DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
                 //capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);

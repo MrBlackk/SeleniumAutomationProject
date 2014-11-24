@@ -1,0 +1,15 @@
+<suite name="Parallel Tests" verbose="1" thread-count="4" parallel="tests">
+    <tests>
+        <test name="Windows+FireFox">
+            <parameters>
+                <parameter name="platform" value="WINDOWS" />
+                <parameter name="browser" value="firefox" />
+                <parameter name="version" value="30.0" />
+                <parameter name="url" value="http://dl.dropbox.com/u/55228056/bmicalculator.html"/>
+            </parameters>
+            <classes>
+                <class name="grid_test.SeGridTest" />
+            </classes>
+        </test>
+    </tests>
+</suite>
